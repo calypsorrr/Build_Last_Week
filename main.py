@@ -48,20 +48,17 @@ while True:
 		relais.value(0)
 
 
-	sensor.readuart()
-	distance = sensor.readout()
-	if distance != False:
-		print("inside me!")
+	# sensor.readuart()
+	# distance = sensor.readout()
+	# if distance != False:
+	# 	print("inside me!")
         # wifiada.sendDataWifi(distance)
 
-		sigfox.send(distance)
-
-
-	# if lorawan.connect():
-	#     while True:
-	#         sensor.readuart()
-	#         distance = sensor.readout()
-	#         if distance != False:
-	#             lorawan.send(distance)
-	#             machine.sleep(3000*10, True)
-	#             lorawan.connect()
+		# sigfox.send(distance)
+	if lora.connect():
+	    sensor.readuart()
+	    distance = sensor.readout()
+	    if distance != False:
+	        lora.send(distance)
+	        machine.sleep(3000*10, True)
+	        lora.connect()
